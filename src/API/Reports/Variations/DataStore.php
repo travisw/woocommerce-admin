@@ -126,7 +126,7 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 			$attr_subquery = new SqlQuery( $this->context . '_attribute_subquery' );
 			$attr_subquery->add_sql_clause( 'select', "DISTINCT {$order_product_lookup_table}.order_item_id" );
 			$attr_subquery->add_sql_clause( 'from', $order_product_lookup_table );
-			$attr_subquery->add_sql_clause( 'where', "AND {$order_product_lookup_table}.variation_id != 0" );
+			//$attr_subquery->add_sql_clause( 'where', "AND {$order_product_lookup_table}.variation_id != 0" );
 
 			foreach ( $attribute_subqueries['join'] as $attribute_join ) {
 				$attr_subquery->add_sql_clause( 'join', $attribute_join );
@@ -177,7 +177,7 @@ class DataStore extends ReportsDataStore implements DataStoreInterface {
 		if ( $included_variations ) {
 			$this->subquery->add_sql_clause( 'where', "AND {$order_product_lookup_table}.variation_id IN ({$included_variations})" );
 		} elseif ( ! $included_products ) {
-			$this->subquery->add_sql_clause( 'where', "AND {$order_product_lookup_table}.variation_id != 0" );
+			//$this->subquery->add_sql_clause( 'where', "AND {$order_product_lookup_table}.variation_id != 0" );
 		}
 
 		$order_status_filter = $this->get_status_subquery( $query_args );

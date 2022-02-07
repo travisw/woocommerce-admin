@@ -84,7 +84,7 @@ class DataStore extends VariationsDataStore implements DataStoreInterface {
 		if ( $included_variations ) {
 			$products_where_clause .= " AND {$order_product_lookup_table}.variation_id IN ({$included_variations})";
 		} else {
-			$products_where_clause .= " AND {$order_product_lookup_table}.variation_id != 0";
+			//$products_where_clause .= " AND {$order_product_lookup_table}.variation_id != 0";
 		}
 
 		$order_status_filter = $this->get_status_subquery( $query_args );

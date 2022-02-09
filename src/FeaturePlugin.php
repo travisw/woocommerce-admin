@@ -22,6 +22,7 @@ use \Automattic\WooCommerce\Admin\Notes\ManageStoreActivityFromHomeScreen;
 use \Automattic\WooCommerce\Admin\Notes\NavigationNudge;
 use \Automattic\WooCommerce\Admin\Notes\MagentoMigration;
 use Automattic\WooCommerce\Admin\Features\Features;
+use Automattic\WooCommerce\Admin\Internal\Onboarding\Onboarding;
 
 /**
  * Feature plugin main class.
@@ -171,6 +172,10 @@ class FeaturePlugin {
 
 		// Initialize API.
 		API\Init::instance();
+
+		if ( Features::is_enabled( 'onboarding' ) ) {
+			Onboarding::init();
+		}
 
 		if ( Features::is_enabled( 'analytics' ) ) {
 			// Initialize Reports syncing.

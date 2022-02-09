@@ -5,9 +5,9 @@
  * @package Automattic\WooCommerce\Admin\Schedulers
  */
 
-use Automattic\WooCommerce\Admin\Features\Onboarding;
+use Automattic\WooCommerce\Admin\Internal\Onboarding;
 use Automattic\WooCommerce\Admin\Schedulers\MailchimpScheduler;
-use Automattic\WooCommerce\Admin\Features\Onboarding\OnboardingProfile;
+use Automattic\WooCommerce\Admin\Internal\Onboarding\OnboardingProfile;
 
 /**
  * Class WC_Tests_Mailchimp_Scheduler

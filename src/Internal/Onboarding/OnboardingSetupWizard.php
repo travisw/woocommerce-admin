@@ -32,7 +32,6 @@ class OnboardingSetupWizard {
 		add_filter( 'admin_body_class', array( __CLASS__, 'add_loading_classes' ) );
 		add_action( 'admin_init', array( __CLASS__, 'do_admin_redirects' ) );
 		add_action( 'current_screen', array( __CLASS__, 'redirect_to_profiler' ) );
-		add_action( 'current_screen', array( __CLASS__, 'redirect_old_onboarding' ) );
 		add_filter( 'woocommerce_show_admin_notice', array( __CLASS__, 'remove_old_install_notice' ), 10, 2 );
 		add_filter( 'woocommerce_component_settings_preload_endpoints', array( __CLASS__, 'add_preload_endpoints' ) );
 	}
@@ -103,18 +102,6 @@ class OnboardingSetupWizard {
 	public static function add_preload_endpoints( $endpoints ) {
 		$endpoints['countries'] = '/wc-analytics/data/countries';
 		return $endpoints;
-	}
-
-	/**
-	 * Redirect the old onboarding wizard to the profiler.
-	 */
-	public static function redirect_old_onboarding() {
-		$current_page = isset( $_GET['page'] ) ? wc_clean( wp_unslash( $_GET['page'] ) ) : false; // phpcs:ignore csrf okay.
-
-		if ( 'wc-setup' === $current_page ) {
-			delete_transient( '_wc_activation_redirect' );
-			wp_safe_redirect( wc_admin_url( '&reset_profiler=1' ) );
-		}
 	}
 
 	/**
